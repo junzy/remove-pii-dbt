@@ -1,4 +1,7 @@
-{% macro delete_pii_columns(schema, columns, tables) %} 
+{% macro delete_pii_columns() %} 
+{% set schema = ["dbt_test"] %}
+{% set columns = ["first_name", "last_name", "email", "addresses", "verified_email"] %}
+{% set tables = ["customers"] %}
   {% do log('Input schema: ' ~ schema ~ ', columns: ' ~ columns ~ ', tables: ' ~ table , info=true) %}   
   {%- for table in tables -%}
       {% do log('altering table ' ~ schema ~ '.' ~ table , info=true) %}
