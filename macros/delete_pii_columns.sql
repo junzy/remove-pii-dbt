@@ -1,7 +1,7 @@
 {% macro delete_pii_columns() %} 
 {% set schema = "dbt_test" %}
 {% set columns = ["first_name", "last_name", "email", "addresses", "verified_email"] %}
-{% set tables = ["customers", "orders_customer"] %}
+{% set tables = ["customers", "orders_customer", "orders_customer_default_address", "customers_addresses", "customers_default_address", "draft_orders_customer", "draft_orders_customer_default_address", "abandoned_checkouts_customer", "abandoned_checkouts_customer_addresses"] %}
   {% do log('Input schema: ' ~ schema ~ ', columns: ' ~ columns ~ ', tables: ' ~ table , info=true) %}   
   {%- for table in tables -%}
       {% do log('altering table ' ~ schema ~ '.' ~ table , info=true) %}
