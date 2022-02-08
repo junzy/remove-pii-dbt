@@ -2404,3 +2404,173 @@ There are 1 unused configuration paths:
 07:34:32.000123 [debug] [MainThread]: On macro_delete_pii_columns: Close
 07:34:32.001048 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bcd9910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be27610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be27670>]}
 07:34:33.632687 [debug] [MainThread]: Connection 'macro_delete_pii_columns' was properly closed.
+
+
+============================== 2022-02-08 07:52:47.697166 | 690017c2-41bf-41d4-ba01-32ca737130cb ==============================
+07:52:47.697166 [info ] [MainThread]: Running with dbt=1.0.1
+07:52:47.697824 [debug] [MainThread]: running dbt with arguments Namespace(record_timing_info=None, debug=None, log_format=None, write_json=None, use_colors=None, printer_width=None, warn_error=None, version_check=None, partial_parse=None, single_threaded=False, use_experimental_parser=None, static_parser=None, profiles_dir='/Users/junaid/.dbt', send_anonymous_usage_stats=None, fail_fast=None, event_buffer_size=None, project_dir=None, profile=None, target=None, vars='{}', log_cache_events=False, macro='delete_pii_columns', args='{}', defer=None, state=None, cls=<class 'dbt.task.run_operation.RunOperationTask'>, which='run-operation', rpc_method='run-operation')
+07:52:47.698055 [debug] [MainThread]: Tracking: tracking
+07:52:47.711166 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107817220>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107817340>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107817370>]}
+07:52:47.760263 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+07:52:47.760827 [debug] [MainThread]: Partial parsing: updated file: remove_pii://macros/delete_pii_columns.sql
+07:52:47.761049 [debug] [MainThread]: Parsing macros/delete_pii_columns.sql
+07:52:47.770240 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.remove_pii.example
+
+07:52:47.774784 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '690017c2-41bf-41d4-ba01-32ca737130cb', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10791c0d0>]}
+07:52:47.778973 [debug] [MainThread]: Acquiring new postgres connection "macro_delete_pii_columns"
+07:52:47.779226 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:52:47.779385 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:52:47.779530 [debug] [MainThread]: Opening a new connection, currently in state init
+07:52:50.156745 [debug] [MainThread]: SQL status: BEGIN in 2.38 seconds
+07:52:50.157452 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:52:50.158012 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:52:50.158352 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:52:50.379508 [debug] [MainThread]: SQL status: COMMIT in 0.22 seconds
+07:52:50.390697 [info ] [MainThread]: Input schema: ['dbt_test'], columns: ['first_name', 'last_name', 'email', 'addresses', 'verified_email'], tables: 
+07:52:50.391165 [info ] [MainThread]: altering table ['dbt_test'].customers
+07:52:50.396861 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:52:50.397238 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:52:50.618142 [debug] [MainThread]: SQL status: BEGIN in 0.22 seconds
+07:52:50.618621 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:52:50.618876 [debug] [MainThread]: On macro_delete_pii_columns: /* {"app": "dbt", "dbt_version": "1.0.1", "profile_name": "remove_pii", "target_name": "dev", "connection_name": "macro_delete_pii_columns"} */
+ALTER TABLE ['dbt_test'].customers   
+          DROP COLUMN IF EXISTS first_name
+          ,   
+          DROP COLUMN IF EXISTS last_name
+          ,   
+          DROP COLUMN IF EXISTS email
+          ,   
+          DROP COLUMN IF EXISTS addresses
+          ,   
+          DROP COLUMN IF EXISTS verified_email
+          ;
+        commit;
+07:52:50.839721 [debug] [MainThread]: Postgres adapter: Postgres error: syntax error at or near "["
+LINE 2: ALTER TABLE ['dbt_test'].customers   
+                    ^
+
+07:52:50.840178 [debug] [MainThread]: On macro_delete_pii_columns: ROLLBACK
+07:52:51.165028 [debug] [MainThread]: Postgres adapter: Error running SQL: macro delete_pii_columns
+07:52:51.165798 [debug] [MainThread]: Postgres adapter: Rolling back transaction.
+07:52:51.166391 [debug] [MainThread]: On macro_delete_pii_columns: Close
+07:52:51.167684 [error] [MainThread]: Encountered an error while running operation: Database Error
+  syntax error at or near "["
+  LINE 2: ALTER TABLE ['dbt_test'].customers   
+                      ^
+07:52:51.168427 [debug] [MainThread]: 
+07:52:51.169118 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107939c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107939be0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107939b80>]}
+07:52:52.489068 [debug] [MainThread]: Connection 'macro_delete_pii_columns' was properly closed.
+
+
+============================== 2022-02-08 07:53:10.095731 | d2fc9522-536e-4d60-970c-b90dd599eadc ==============================
+07:53:10.095731 [info ] [MainThread]: Running with dbt=1.0.1
+07:53:10.096703 [debug] [MainThread]: running dbt with arguments Namespace(record_timing_info=None, debug=None, log_format=None, write_json=None, use_colors=None, printer_width=None, warn_error=None, version_check=None, partial_parse=None, single_threaded=False, use_experimental_parser=None, static_parser=None, profiles_dir='/Users/junaid/.dbt', send_anonymous_usage_stats=None, fail_fast=None, event_buffer_size=None, project_dir=None, profile=None, target=None, vars='{}', log_cache_events=False, macro='delete_pii_columns', args='{}', defer=None, state=None, cls=<class 'dbt.task.run_operation.RunOperationTask'>, which='run-operation', rpc_method='run-operation')
+07:53:10.097050 [debug] [MainThread]: Tracking: tracking
+07:53:10.109405 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109edc070>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109edc190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109edc1c0>]}
+07:53:10.151857 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+07:53:10.152293 [debug] [MainThread]: Partial parsing: updated file: remove_pii://macros/delete_pii_columns.sql
+07:53:10.152488 [debug] [MainThread]: Parsing macros/delete_pii_columns.sql
+07:53:10.161690 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.remove_pii.example
+
+07:53:10.166317 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd2fc9522-536e-4d60-970c-b90dd599eadc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fd60d0>]}
+07:53:10.170104 [debug] [MainThread]: Acquiring new postgres connection "macro_delete_pii_columns"
+07:53:10.170372 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:53:10.170536 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:53:10.170679 [debug] [MainThread]: Opening a new connection, currently in state init
+07:53:12.480519 [debug] [MainThread]: SQL status: BEGIN in 2.31 seconds
+07:53:12.481323 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:53:12.481861 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:53:12.482527 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:53:12.703995 [debug] [MainThread]: SQL status: COMMIT in 0.22 seconds
+07:53:12.714844 [info ] [MainThread]: Input schema: dbt_test, columns: ['first_name', 'last_name', 'email', 'addresses', 'verified_email'], tables: 
+07:53:12.715375 [info ] [MainThread]: altering table dbt_test.customers
+07:53:12.720871 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:53:12.721200 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:53:12.975666 [debug] [MainThread]: SQL status: BEGIN in 0.25 seconds
+07:53:12.976251 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:53:12.976660 [debug] [MainThread]: On macro_delete_pii_columns: /* {"app": "dbt", "dbt_version": "1.0.1", "profile_name": "remove_pii", "target_name": "dev", "connection_name": "macro_delete_pii_columns"} */
+ALTER TABLE dbt_test.customers   
+          DROP COLUMN IF EXISTS first_name
+          ,   
+          DROP COLUMN IF EXISTS last_name
+          ,   
+          DROP COLUMN IF EXISTS email
+          ,   
+          DROP COLUMN IF EXISTS addresses
+          ,   
+          DROP COLUMN IF EXISTS verified_email
+          ;
+        commit;
+07:53:13.283477 [debug] [MainThread]: SQL status: COMMIT in 0.31 seconds
+07:53:13.286581 [debug] [MainThread]: On macro_delete_pii_columns: ROLLBACK
+07:53:13.508075 [debug] [MainThread]: On macro_delete_pii_columns: Close
+07:53:13.509458 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109edc070>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109ff3c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109ff3be0>]}
+07:53:14.751878 [debug] [MainThread]: Connection 'macro_delete_pii_columns' was properly closed.
+
+
+============================== 2022-02-08 07:54:01.946434 | 22ab636f-66bc-4a9f-b7da-c0d4dcf5974b ==============================
+07:54:01.946434 [info ] [MainThread]: Running with dbt=1.0.1
+07:54:01.947584 [debug] [MainThread]: running dbt with arguments Namespace(record_timing_info=None, debug=None, log_format=None, write_json=None, use_colors=None, printer_width=None, warn_error=None, version_check=None, partial_parse=None, single_threaded=False, use_experimental_parser=None, static_parser=None, profiles_dir='/Users/junaid/.dbt', send_anonymous_usage_stats=None, fail_fast=None, event_buffer_size=None, project_dir=None, profile=None, target=None, vars='{}', log_cache_events=False, macro='delete_pii_columns', args='{}', defer=None, state=None, cls=<class 'dbt.task.run_operation.RunOperationTask'>, which='run-operation', rpc_method='run-operation')
+07:54:01.947858 [debug] [MainThread]: Tracking: tracking
+07:54:01.960827 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110c111f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110c11310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110c11340>]}
+07:54:02.002304 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+07:54:02.002857 [debug] [MainThread]: Partial parsing: updated file: remove_pii://macros/delete_pii_columns.sql
+07:54:02.003081 [debug] [MainThread]: Parsing macros/delete_pii_columns.sql
+07:54:02.011888 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.remove_pii.example
+
+07:54:02.016510 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '22ab636f-66bc-4a9f-b7da-c0d4dcf5974b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110d130d0>]}
+07:54:02.020341 [debug] [MainThread]: Acquiring new postgres connection "macro_delete_pii_columns"
+07:54:02.020586 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:54:02.020743 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:54:02.020889 [debug] [MainThread]: Opening a new connection, currently in state init
+07:54:04.278315 [debug] [MainThread]: SQL status: BEGIN in 2.26 seconds
+07:54:04.279195 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:54:04.279750 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:54:04.280220 [debug] [MainThread]: On macro_delete_pii_columns: COMMIT
+07:54:04.502824 [debug] [MainThread]: SQL status: COMMIT in 0.22 seconds
+07:54:04.513772 [info ] [MainThread]: Input schema: dbt_test, columns: ['first_name', 'last_name', 'email', 'addresses', 'verified_email'], tables: 
+07:54:04.514261 [info ] [MainThread]: altering table dbt_test.customers
+07:54:04.519822 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:54:04.520188 [debug] [MainThread]: On macro_delete_pii_columns: BEGIN
+07:54:04.790086 [debug] [MainThread]: SQL status: BEGIN in 0.27 seconds
+07:54:04.790685 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:54:04.791099 [debug] [MainThread]: On macro_delete_pii_columns: /* {"app": "dbt", "dbt_version": "1.0.1", "profile_name": "remove_pii", "target_name": "dev", "connection_name": "macro_delete_pii_columns"} */
+ALTER TABLE dbt_test.customers   
+          DROP COLUMN IF EXISTS first_name
+          ,   
+          DROP COLUMN IF EXISTS last_name
+          ,   
+          DROP COLUMN IF EXISTS email
+          ,   
+          DROP COLUMN IF EXISTS addresses
+          ,   
+          DROP COLUMN IF EXISTS verified_email
+          ;
+        commit;
+07:54:05.014976 [debug] [MainThread]: SQL status: COMMIT in 0.22 seconds
+07:54:05.017192 [info ] [MainThread]: altering table dbt_test.orders_customer
+07:54:05.018049 [debug] [MainThread]: Using postgres connection "macro_delete_pii_columns"
+07:54:05.018325 [debug] [MainThread]: On macro_delete_pii_columns: /* {"app": "dbt", "dbt_version": "1.0.1", "profile_name": "remove_pii", "target_name": "dev", "connection_name": "macro_delete_pii_columns"} */
+ALTER TABLE dbt_test.orders_customer   
+          DROP COLUMN IF EXISTS first_name
+          ,   
+          DROP COLUMN IF EXISTS last_name
+          ,   
+          DROP COLUMN IF EXISTS email
+          ,   
+          DROP COLUMN IF EXISTS addresses
+          ,   
+          DROP COLUMN IF EXISTS verified_email
+          ;
+        commit;
+07:54:05.243802 [debug] [MainThread]: SQL status: COMMIT in 0.23 seconds
+07:54:05.246263 [debug] [MainThread]: On macro_delete_pii_columns: ROLLBACK
+07:54:05.468545 [debug] [MainThread]: On macro_delete_pii_columns: Close
+07:54:05.470657 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110c111f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110d2fc70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110d2fa30>]}
+07:54:06.925777 [debug] [MainThread]: Connection 'macro_delete_pii_columns' was properly closed.
