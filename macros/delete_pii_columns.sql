@@ -16,6 +16,13 @@
         commit;
       {%- endcall %}
   {%- endfor -%}
- 
-
+  {% call statement() -%}
+    ALTER TABLE {{schema}}.orders
+    ADD COLUMN customer_id FLOAT(50);
+    
+    UPDATE orders
+    SET customer_id = CAST(js.customer -> 'id' as FLOAT(50))
+    FROM orders as js
+    WHERE js.id = orders.id;
+  {%- endcall %}
 {% endmacro %}§
